@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Materias</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        input, button { padding: 8px; font-size: 16px; }
+        .resultado { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Consulta Fecha y Horario de Exámenes</h2>
+    <input type="text" id="codigoMateria" placeholder="Ingresa código de la materia">
+    <button onclick="consultar()">Consultar</button>
+
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        const materias = {
+            "MAT101": {nombre: "Matemática Básica", fecha: "2025-03-28", leccion: "Álgebra", horario: "Mañana"},
+            "FIS202": {nombre: "Física General", fecha: "2025-03-30", leccion: "Cinemática", horario: "Tarde"},
+            "PRO303": {nombre: "Programación Avanzada", fecha: "2025-04-02", leccion: "POO", horario: "Noche"},
+            "HIS404": {nombre: "Historia Contemporánea", fecha: "2025-04-05", leccion: "Guerra Fría", horario: "Fines de Semana"}
+        };
+
+        function consultar(){
+            const codigo = document.getElementById("codigoMateria").value.toUpperCase();
+            const resultadoDiv = document.getElementById("resultado");
+            
+            if(materias[codigo]){
+                const info = materias[codigo];
+                resultadoDiv.innerHTML = `
+                    <strong>Materia:</strong> ${info.nombre}<br>
+                    <strong>Fecha de examen:</strong> ${info.fecha}<br>
+                    <strong>Lección:</strong> ${info.leccion}<br>
+                    <strong>Horario:</strong> ${info.horario}
+                `;
+            } else {
+                resultadoDiv.innerHTML = "<span style='color:red;'>Código de materia no encontrado. Por favor verifica.</span>";
+            }
+        }
+    </script>
+</body>
+</html>
